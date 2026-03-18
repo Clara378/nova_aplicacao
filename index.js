@@ -4,19 +4,15 @@ const morgan = require("morgan");
 const app = express();
 require("dotenv").config();
 
-const PORTA = Number(process.env.PORTA || 300);
+const PORTA = Number(process.env.PORTA || 3000);
+
+
+const router = require("./routes/roupas.router")
 
 app.use(morgan("dev"));
-
-
-app.use(morgan("dev"));
-app.set("views", "./views");
+app.set("Views", "./Views");
 app.set("view engine", "ejs");
 app.use(express.static("./public"));
-
-
-
-
 
 
 app.use((req, res) => {
