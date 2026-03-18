@@ -1,26 +1,31 @@
-// importações de bibliotecas e configurações básicas
 const http = require("http");
-const porta = 3000;
-const express = require("express"); // Linha adicionada
-const app = express(); // Linha adicionada
+const express = require("express");
 const morgan = require("morgan");
+const app = express();
+require("dotenv").config();
 
-// configurações iniciais do morgan
+const PORTA = Number(process.env.PORTA || 300);
+
 app.use(morgan("dev"));
-app.use()
 
 
-app.use
-app.get("/", (req, res) => {
-  res.send("rota raiz");
+app.use(morgan("dev"));
+app.set("views", "./views");
+app.set("view engine", "ejs");
+app.use(express.static("./public"));
+
+
+
+
+
+
+app.use((req, res) => {
+  //res.status(404).send("Página não encontrada!");
+  res.status(404).render("erro404", { title: "erro 404" });
 });
 
 
-// Coloca o servidor no ar
-//Serve.listen(porta, () => {
- app.listen(porta, () => {
+app.listen(PORTA, () => {
   console.log("Servidor rodando");
-  console.log("Endereco: http://localhost:" + porta);
+  console.log("Endereco: http://localhost:" + PORTA);
 });
-
-
